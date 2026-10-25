@@ -43,8 +43,32 @@ Con il token: aggiungere agli argomenti `"--header", "Authorization: Bearer <tok
 ```
 claude mcp add --transport http omi http://localhost:8765/mcp
 claude mcp add --transport http omi http://localhost:8765/mcp --header "Authorization: Bearer <token>"
+claude mcp list
 claude mcp remove omi
 ```
+- Con `--scope user` il server è disponibile in tutti i progetti; con `--scope project` viene salvato in `.mcp.json`
+  e condiviso con chi usa lo stesso repository (non metterci il token).
+- In una sessione, `/mcp` mostra lo stato della connessione e l'elenco degli strumenti.
+- Alla prima chiamata di ogni strumento Claude Code chiede il permesso; gli strumenti sono di sola lettura, quindi si
+  possono consentire in modo permanente (regola `mcp__omi__*` nei permessi).
+
+### Verifica e uso nelle conversazioni (tutti i client)
+1. Domanda di prova: "Quali semestri OMI sono caricati?". Claude deve chiamare `elenco_semestri` e riportare
+   semestri, numero di zone e fonte dei dati.
+2. Seconda prova: "Cerca il comune di Asti nei dati OMI". Deve chiamare `cerca_comuni`.
+3. Se Claude risponde senza chiamare gli strumenti: controllare che il connettore sia attivo nella conversazione
+   (claude.ai, Cowork) o elencato da `/mcp` (Claude Code), oppure chiedere esplicitamente "usa il server OMI".
+
+Consigli per domande affidabili:
+- indicare il comune con la provincia quando il nome è ambiguo (es. "Samone (TO)"), oppure il codice catastale;
+- indicare il semestre (`2025/2`) quando conta; se manca si usa l'ultimo caricato;
+- per un indirizzo fornire le coordinate, oppure attivare MCP Cruscotto Italia (§3), che le ricava dallo stradario
+  ANNCSU; il server OMI non converte gli indirizzi in coordinate;
+- per le serie storiche chiedere di segnalare i cambi di descrizione della zona (revisioni della zonizzazione);
+- chiedere sempre la citazione della fonte "Agenzia delle Entrate - OMI" nei documenti prodotti.
+
+Prova degli strumenti senza Claude: `npx @modelcontextprotocol/inspector`, trasporto "Streamable HTTP",
+URL `http://localhost:8765/mcp` (con l'intestazione `Authorization` se il token è attivo).
 
 ## 3. Uso combinato con MCP Cruscotto Italia
 

@@ -41,7 +41,7 @@ nello stesso file.
 3. **Arrotondamenti all'intero pari** (`f64::round_ties_even`), mai `round()`.
 4. **Privacy.** Il nome degli ZIP contiene il codice fiscale del richiedente. Nel database va solo il nome
    ripulito; il nome originale non deve mai finire nel log del server, nei test, nei fixture o in git.
-   `.gitignore`: `target/`, `*.zip`, `*.db`, `*.db-shm`, `*.db-wal`, `*.log`, `dati-test/`, `dist/`.
+   `.gitignore`: `target/`, `*.zip`, `*.db`, `*.db-shm`, `*.db-wal`, `*.log`, `dati-test/`, `dist/`, `logs/`.
 5. **Licenza Apache-2.0.** File `LICENSE` (testo integrale) e `NOTICE` come in `specifica/05_contesto_e_uso.md`.
    Ogni file `.rs` inizia con:
    ```rust
@@ -70,6 +70,8 @@ nello stesso file.
 ├─ CLAUDE.md                ← questo file
 ├─ specifica/               ← specifica funzionale (normativa)
 ├─ prompt/                  ← fasi 01…07
+├─ scripts/                 ← esegui-fasi.ps1 / esegui-fasi.sh: lanciano le fasi in sequenza (non modificarli senza motivo)
+├─ logs/                    ← log delle esecuzioni automatiche (non versionato)
 ├─ dati-test/               ← eventuali ZIP OMI reali per i test (non versionato)
 ├─ Cargo.toml, Cargo.lock, .cargo/config.toml
 ├─ crates/

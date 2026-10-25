@@ -1,0 +1,5 @@
+# Fine riga coerenti tra Windows e Linux
+* text=auto
+*.sh  text eol=lf
+*.ps1 text eol=crlf
+*.md  text eol=lf

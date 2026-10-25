@@ -13,3 +13,6 @@ dati-test/
 
 # Log del server: contiene IP e richieste dei client
 *.log
+
+# Log delle esecuzioni automatiche degli script
+logs/

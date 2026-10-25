@@ -42,8 +42,25 @@ da copiare, percorsi di esempio coerenti in tutto il documento (`C:\Program File
    - aggiornamento dei binari (ferma → sostituisci → avvia; quando serve reinstallare).
 8. **Esposizione HTTPS con Caddy**: quando serve, prerequisiti di rete (DNS, porte 80/443, NAT),
    `install-caddy.ps1`, Caddyfile commentato, verifica, rinnovo dei certificati, alternativa con tunnel cloudflared.
-9. **Collegamento ai client**: da `specifica/05` §2–§3 (claude.ai e Cowork, Claude Desktop con `mcp-remote`,
-   Claude Code, MCP Inspector, Cruscotto Italia), con le varianti per il token.
+9. **Uso del server MCP da Claude** (capitolo obbligatorio e dettagliato, da `specifica/05` §2–§4). Per
+   ciascun client, cioè **claude.ai** (web, app desktop e mobile), **Cowork**, **Claude Desktop** con server locale
+   (`mcp-remote`) e **Claude Code**, il manuale deve spiegare passo per passo:
+   - prerequisiti (server avviato, URL raggiungibile, HTTPS dove serve, token se attivo);
+   - come aggiungere il server, con i comandi o i file di configurazione completi, anche nella variante con token;
+   - come attivarlo in una conversazione e come verificare che funzioni (domanda di prova, per esempio "Quali
+     semestri OMI sono caricati?", che deve far chiamare `elenco_semestri`; in Claude Code anche il comando `/mcp`);
+   - come gestire i permessi di chiamata dei tool (approvazione singola o permanente);
+   - come rimuoverlo;
+   - i problemi tipici di quel client (connettore che non si collega, server non elencato, errori di autenticazione).
+
+   Il capitolo prosegue con: come formulare le domande per ottenere risposte affidabili (comune e provincia,
+   semestre esplicito, coordinate invece di indirizzi, citazione della fonte), un percorso guidato con 5–6 domande
+   d'esempio di difficoltà crescente (dalla singola zona alla serie storica con grafico o foglio di calcolo, con lo
+   strumento che Claude userà e cosa aspettarsi nella risposta), l'uso combinato con MCP Cruscotto Italia per
+   ricavare le coordinate da un indirizzo e incrociare altri dati comunali, e la prova degli strumenti senza Claude
+   con MCP Inspector (`npx @modelcontextprotocol/inspector`). Prima di scrivere il capitolo verifica sulla
+   documentazione Anthropic corrente (support.claude.com e code.claude.com) i nomi dei menu, i comandi e le
+   opzioni di autenticazione dei connettori personalizzati, e indica la data della verifica.
 10. **Strumenti MCP**: tabella dei 9 strumenti con parametri, un esempio di chiamata e di risposta abbreviata per
     ciascuno (presi dai test golden), formato del semestre, comportamento con i semestri senza perimetri, esempi
     di domande di `specifica/05` §4.
